@@ -1,0 +1,21 @@
+# AltTester Framework
+alttester-driver==2.2.4
+
+# Testing Framework
+pytest==8.4.0
+pytest-html==4.1.1
+pytest-xdist==3.8.0
+pytest-json-report==1.5.0
+
+# Allure Reporting
+allure-pytest==2.15.0  
+
+# Browser Automation
+selenium==4.34.2
+webdriver-manager==4.0.2
+
+# Mobile Automation
+Appium-Python-Client==5.1.2
+
+# Utilities
+python-dotenv==1.1.1
