@@ -38,8 +38,8 @@ if not exist "screenshots-and-logs" mkdir screenshots-and-logs
 rem Load environment variables if .env file exists
 if exist ".env" (
     echo Loading environment variables from .env file...
-    for /f "usebackq tokens=1,2 delims==" %%i in (".env") do (
-        if not "%%i"=="" if not "%%i:~0,1%"=="#" set %%i=%%j
+    for /f "usebackq eol=# tokens=1,2 delims==" %%i in (".env") do (
+        if not "%%i"=="" set "%%i=%%j"
     )
 )
 
@@ -49,9 +49,6 @@ python -m pytest %*
 
 rem Capture exit code
 set exit_code=%errorlevel%
-
-rem Deactivate virtual environment
-call venv\Scripts\deactivate.bat
 
 echo Test execution completed with exit code: %exit_code%
 exit /b %exit_code%
