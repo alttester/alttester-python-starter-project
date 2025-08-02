@@ -77,19 +77,19 @@ class BaseView:
         Returns:
             AltObject instance
         """
-        Reporter.log(f"Waiting for element {locator[1]} to be present.")
+        Reporter.log(f"Waiting for object {locator[1]} to be present.")
         try:
             return self.alt_driver.wait_for_object(
                 locator[0], locator[1], timeout=timeout, interval=interval
             )
         except Exception:
             Reporter.log(
-                f"Element {locator[1]} was not found within {timeout} seconds",
+                f"Object {locator[1]} was not found within {timeout} seconds",
                 with_screenshot=True,
             )
             raise AssertionError(
-                f"Element '{locator[1]}' was not found within {timeout} seconds. "
-                f"Please check if the element exists or if the game loaded correctly."
+                f"Object '{locator[1]}' was not found within {timeout} seconds. "
+                f"Please check if the object exists or if the game loaded correctly."
             )
 
     @allure.step("Wait for object which contains")
@@ -172,10 +172,10 @@ class BaseView:
         except Exception:
             return False
 
-    @allure.step("Find element by locator")
-    def find_element(self, locator: Tuple[By, str]):
+    @allure.step("Find object by locator")
+    def find_object(self, locator: Tuple[By, str]):
         """
-        Find an element by locator
+        Find an object by locator
 
         Args:
             locator: Tuple of (By, value) for locating the object
@@ -184,15 +184,15 @@ class BaseView:
             AltObject instance
 
         Raises:
-            AssertionError: If element is not found
+            AssertionError: If object is not found
         """
         try:
             return self.alt_driver.find_object(locator[0], locator[1])
         except Exception:
-            Reporter.log(f"Element {locator[1]} not found", with_screenshot=True)
+            Reporter.log(f"Object {locator[1]} not found", with_screenshot=True)
             raise AssertionError(
-                f"Element '{locator[1]}' was not found. "
-                f"Please verify the element exists in the current scene."
+                f"Object '{locator[1]}' was not found. "
+                f"Please verify the object exists in the current scene."
             )
 
     @allure.step("Get current scene")

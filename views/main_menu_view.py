@@ -20,14 +20,14 @@ class MainMenuView(BaseView):
 
     @allure.step("Click play button")
     def click_play_button(self) -> None:
-        play_button = self.find_element(self.play_button_locator)
+        play_button = self.find_object(self.play_button_locator)
         play_button.click()
         Reporter.log("Clicked play button")
 
     @allure.step("Check if main menu is visible")
     def is_main_menu_visible(self) -> bool:
         try:
-            main_menu_panel = self.find_element(self.main_menu_panel_locator)
+            main_menu_panel = self.find_object(self.main_menu_panel_locator)
             is_visible = main_menu_panel.enabled
             Reporter.log(f"Main menu panel visible: {is_visible}")
             return is_visible
@@ -37,13 +37,13 @@ class MainMenuView(BaseView):
 
     @allure.step("Enter player name")
     def enter_player_name(self, player_name: str) -> None:
-        input_field = self.find_element(self.player_name_input_locator)
+        input_field = self.find_object(self.player_name_input_locator)
         input_field.set_text(player_name, submit=True)
         Reporter.log(f"Entered player name: {player_name}")
 
     @allure.step("Navigate to settings")
     def navigate_to_settings(self) -> None:
-        settings_button = self.find_element(self.settings_button_locator)
+        settings_button = self.find_object(self.settings_button_locator)
         settings_button.click()
         Reporter.log("Navigated to settings")
 

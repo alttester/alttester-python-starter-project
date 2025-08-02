@@ -94,6 +94,7 @@ def start_alttester_driver() -> AltDriver:
         port=TestConfiguration.ALT_TESTER_SERVER_PORT,
         app_name=TestConfiguration.ALT_TESTER_APP_NAME,
         enable_logging=False,
+        timeout=5,
     )
 
     Reporter.alt_driver = driver
