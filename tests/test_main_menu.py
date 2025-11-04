@@ -2,19 +2,11 @@ import pytest
 import allure
 from common.reporter import Reporter
 from tests.base_test import BaseTest
-from views.main_menu_view import MainMenuView
-from views.gameplay_view import GameplayView
 
 
 @allure.suite("Main Menu Tests")
 class TestMainMenu(BaseTest):
     """Test suite for main menu functionality"""
-
-    def setup_method(self, method):
-        """Set up before each test method"""
-        super().setup_method(method)
-        self.main_menu_view = MainMenuView(self.drivers)
-        self.gameplay_view = GameplayView(self.drivers)
 
     @allure.feature("Main Menu")
     @allure.story("Menu Loading")

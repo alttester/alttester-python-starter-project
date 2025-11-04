@@ -11,6 +11,8 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from common.driver_container import DriverContainer
 from common.test_configuration import TestConfiguration, PlatformType
 from common.reporter import Reporter
+from views.main_menu_view import MainMenuView
+from views.gameplay_view import GameplayView
 
 
 @pytest.fixture(scope="class", autouse=True)
@@ -35,6 +37,28 @@ def setup_drivers(request):
         if drivers:
             stop_all_drivers(drivers)
         Reporter.log("All drivers stopped and cleanup completed.")
+
+
+@pytest.fixture(scope="class", autouse=True)
+def setup_views(request, setup_drivers):
+    """Auto-used fixture to initialize all view instances as class properties"""
+    drivers = setup_drivers
+    
+    if drivers:
+        with allure.step("Initialize All View Instances"):
+            # Initialize all view instances and set them as class properties
+            request.cls.main_menu_view = MainMenuView(drivers)
+            request.cls.gameplay_view = GameplayView(drivers)
+            
+            Reporter.log("All view instances initialized successfully")
+    
+    yield
+    
+    # Cleanup view instances if needed
+    if hasattr(request.cls, 'main_menu_view'):
+        request.cls.main_menu_view = None
+    if hasattr(request.cls, 'gameplay_view'):
+        request.cls.gameplay_view = None
 
 
 @pytest.fixture(autouse=True)
