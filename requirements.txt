@@ -1,5 +1,5 @@
 # AltTester Framework
-alttester-driver==2.2.4
+alttester-driver==2.2.5
 
 # Testing Framework
 pytest==8.4.0
